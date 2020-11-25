@@ -6,9 +6,11 @@
 
 An Ansible role that installs a specific base python+pip version (`major.minor` only).
 
-The executables will be available at `/usr/bin/python3.7` and `/usr/local/bin/pip3.7`, for the `base_python_version` specified.
+The executables will be available at `/usr/bin/python3.7` and `/usr/local/bin/pip3.7`, for the `python_base_version` specified.
 
 The role is tested against: Ubuntu 16.04/18.04/20.04, Fedora 31 and CentOS 8 for python versions `3.6`, `3.7` and `3.8`.
+
+You can also specify a path in which to create a virtualenv which uses this python version, with `python_venv_path`. By default `python_venv_packages` is set to install the latest pip, setuptools and wheel versions.
 
 ## Installation
 
@@ -24,6 +26,13 @@ See `defaults/main.yml`
 - hosts: servers
   roles:
   - role: marvel-nccr.python
+    vars:
+      python_venv_path: "/tmp/my_venv"
+      python_venv_packages:
+        - pip
+        - setuptools
+        - wheel
+      python_venv_state: latest
 ```
 
 ## Development and testing

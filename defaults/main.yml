@@ -1,2 +1,8 @@
-base_python_version: "3.7"
 root_user: "root"
+python_base_version: "3.7"
+python_venv_path:
+python_venv_state: latest
+python_venv_packages:
+- pip
+- setuptools
+- wheel

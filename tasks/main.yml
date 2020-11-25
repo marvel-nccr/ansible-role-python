@@ -3,3 +3,23 @@
 
 - include_tasks: setup-redhat.yml
   when: ansible_os_family|lower == 'redhat'
+
+- name: download get-pip.py
+  get_url:
+    url: https://bootstrap.pypa.io/get-pip.py
+    dest: /tmp/get-pip.py
+
+- name: "install pip{{ python_base_version }}"
+  become: true
+  become_user: "{{ root_user }}"
+  command: /usr/bin/python{{ python_base_version }} /tmp/get-pip.py
+  args:
+    creates: /usr/local/bin/pip{{ python_base_version }}
+
+- name: "create virtual environment: {{ python_venv_path }}"
+  when: python_venv_path is truthy
+  pip:
+    virtualenv: "{{ python_venv_path }}"
+    virtualenv_command: /usr/bin/python{{ python_base_version }} -m venv
+    name: "{{ python_venv_packages }}"
+    state: "{{ python_venv_state }}"

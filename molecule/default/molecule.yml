@@ -31,4 +31,5 @@ provisioner:
     hosts:
       all:
         vars:
-          base_python_version: "${MOLECULE_PYTHON_VERSION:-3.7}"
+          python_base_version: "${MOLECULE_PYTHON_VERSION:-3.7}"
+          python_venv_path: /tmp/test_venv

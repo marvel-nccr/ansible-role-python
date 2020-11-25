@@ -1,23 +1,30 @@
 - name: Install dirmngr
   become: true
+  become_user: "{{ root_user }}"
   apt:
-    update_cache: yes
+    update_cache: true
     name:
     - dirmngr
 
 - name: Add deadsnakes repository
   become: true
+  become_user: "{{ root_user }}"
   apt_repository:
     repo: ppa:deadsnakes/ppa
     state: present
 
-- name: Install python{{ base_python_version }}
+- name: Install python{{ python_base_version }}
   become: true
+  become_user: "{{ root_user }}"
   apt:
     name:
-    - python{{ base_python_version }}
-    - python{{ base_python_version }}-dev
-    - python{{ base_python_version }}-venv
+    # For the pip role:
+    # The setuptools package must be installed for both the Ansible Python interpreter
+    # and for the version of Python specified by this option.
+    - python3-setuptools
+    - python{{ python_base_version }}
+    - python{{ python_base_version }}-dev
+    - python{{ python_base_version }}-venv
     - wget
 
 - name: Install distutils
@@ -25,16 +32,4 @@
   become: true
   apt:
     name:
-    - python{{ base_python_version }}-distutils
-
-- name: download get-pip.py
-  get_url:
-    url: https://bootstrap.pypa.io/get-pip.py
-    dest: /tmp/get-pip.py
-
-- name: "install pip{{ base_python_version }}"
-  become: true
-  become_user: "{{ root_user }}"
-  command: /usr/bin/python{{ base_python_version }} /tmp/get-pip.py
-  args:
-    creates: /usr/local/bin/pip{{ base_python_version }}
+    - python{{ python_base_version }}-distutils
