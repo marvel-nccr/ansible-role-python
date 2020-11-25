@@ -1,0 +1,18 @@
+allow_duplicates: false
+
+galaxy_info:
+  role_name: python
+  author: "MARVEL NCCR"
+  # yamllint disable-line rule:line-length
+  description: "An Ansible role that installs a  specific base python version and environment"
+  license: MIT
+  min_ansible_version: 2.9
+  platforms:
+  - name: Ubuntu
+    versions:
+    - xenial
+    - bionic
+  galaxy_tags:
+  - ubuntu
+  - application
+  - science
