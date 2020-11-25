@@ -15,6 +15,10 @@
   become: true
   apt:
     name:
+    # For the pip role:
+    # The setuptools package must be installed for both the Ansible Python interpreter
+    # and for the version of Python specified by this option.
+    - python3-setuptools
     - python{{ base_python_version }}
     - python{{ base_python_version }}-dev
     - python{{ base_python_version }}-venv
