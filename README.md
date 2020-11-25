@@ -1,5 +1,5 @@
 [![CI](https://github.com/marvel-nccr/ansible-role-python/workflows/CI/badge.svg)](https://github.com/marvel-nccr/ansible-role-python/actions)
-[![Ansible Role](https://img.shields.io/ansible/role/25521.svg)](https://galaxy.ansible.com/marvel-nccr/python)
+[![Ansible Role](https://img.shields.io/ansible/role/52015.svg)](https://galaxy.ansible.com/marvel-nccr/python)
 [![Release](https://img.shields.io/github/tag/marvel-nccr/ansible-role-python.svg)](https://github.com/marvel-nccr/ansible-role-python/releases)
 
 # Ansible Role: marvel-nccr.python
