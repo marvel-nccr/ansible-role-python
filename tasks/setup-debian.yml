@@ -1,0 +1,40 @@
+- name: Install dirmngr
+  become: true
+  apt:
+    update_cache: yes
+    name:
+    - dirmngr
+
+- name: Add deadsnakes repository
+  become: true
+  apt_repository:
+    repo: ppa:deadsnakes/ppa
+    state: present
+
+- name: Install python{{ base_python_version }}
+  become: true
+  apt:
+    name:
+    - python{{ base_python_version }}
+    - python{{ base_python_version }}-dev
+    - python{{ base_python_version }}-venv
+    - wget
+
+- name: Install distutils
+  when: ansible_distribution_major_version|int == 18
+  become: true
+  apt:
+    name:
+    - python{{ base_python_version }}-distutils
+
+- name: download get-pip.py
+  get_url:
+    url: https://bootstrap.pypa.io/get-pip.py
+    dest: /tmp/get-pip.py
+
+- name: "install pip{{ base_python_version }}"
+  become: true
+  become_user: "{{ root_user }}"
+  command: /usr/bin/python{{ base_python_version }} /tmp/get-pip.py
+  args:
+    creates: /usr/local/bin/pip{{ base_python_version }}

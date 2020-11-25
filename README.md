@@ -4,7 +4,11 @@
 
 # Ansible Role: marvel-nccr.python
 
-An Ansible role that installs a  specific base python version and environment
+An Ansible role that installs a specific base python+pip version (`major.minor` only).
+
+The executables will be available at `/usr/bin/python3.7` and `/usr/local/bin/pip3.7`, for the `base_python_version` specified.
+
+The role is tested against: Ubuntu 16.04/18.04/20.04, Fedora 31 and CentOS 8 for python versions `3.6`, `3.7` and `3.8`.
 
 ## Installation
 

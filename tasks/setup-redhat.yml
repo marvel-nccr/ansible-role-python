@@ -1,0 +1,19 @@
+- name: Install python{{ base_python_version }}
+  become: true
+  yum:
+    update_cache: yes
+    name:
+    - python{{ base_python_version | replace('.', '') }}
+    - wget
+
+- name: download get-pip.py
+  get_url:
+    url: https://bootstrap.pypa.io/get-pip.py
+    dest: /tmp/get-pip.py
+
+- name: "install pip{{ base_python_version }}"
+  become: true
+  become_user: "{{ root_user }}"
+  command: /usr/bin/python{{ base_python_version }} /tmp/get-pip.py
+  args:
+    creates: /usr/local/bin/pip{{ base_python_version }}
