@@ -1,6 +1,7 @@
 - name: Install dirmngr
   become: true
   apt:
+    update_cache: yes
     name:
     - dirmngr
 
@@ -13,22 +14,19 @@
 - name: Install python{{ base_python_version }}
   become: true
   apt:
-    update_cache: yes
     name:
     - python{{ base_python_version }}
     - python{{ base_python_version }}-dev
     - python{{ base_python_version }}-venv
     - wget
 
-- name: ansible_distribution_major_version
-  debug:
+- debug:
     msg: "{{ansible_distribution_version}}, {{ansible_distribution_major_version}}"
 
 - name: Install distutils
   when: ansible_distribution_major_version|int == 18
   become: true
   apt:
-    update_cache: yes
     name:
     - python{{ base_python_version }}-distutils
 
