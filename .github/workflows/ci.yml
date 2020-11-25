@@ -28,6 +28,7 @@ jobs:
     strategy:
       matrix:
         distro: [ubuntu1604, ubuntu1804, ubuntu2004, centos8, fedora31]
+        python: ['3.6', '3.7', '3.8']
       fail-fast: false
 
     runs-on: ubuntu-latest
@@ -59,6 +60,7 @@ jobs:
       working-directory: ${{ env.galaxy-name }}
       env:
         MOLECULE_DISTRO: ${{ matrix.distro }}
+        MOLECULE_PYTHON_VERSION: ${{ matrix.python }}
 
   release:
     name: Publish to ansible-galaxy
