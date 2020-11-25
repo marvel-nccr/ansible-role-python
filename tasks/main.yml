@@ -9,17 +9,17 @@
     url: https://bootstrap.pypa.io/get-pip.py
     dest: /tmp/get-pip.py
 
-- name: "install pip{{ base_python_version }}"
+- name: "install pip{{ python_base_version }}"
   become: true
   become_user: "{{ root_user }}"
-  command: /usr/bin/python{{ base_python_version }} /tmp/get-pip.py
+  command: /usr/bin/python{{ python_base_version }} /tmp/get-pip.py
   args:
-    creates: /usr/local/bin/pip{{ base_python_version }}
+    creates: /usr/local/bin/pip{{ python_base_version }}
 
-- name: "install python packages"
-  when: base_python_packages is truthy
-  become: true
-  become_user: "{{ root_user }}"
+- name: "create virtual environment: {{ python_venv_path }}"
+  when: python_venv_path is truthy
   pip:
-    executable: /usr/local/bin/pip{{ base_python_version }}
-    name: "{{ base_python_packages }}"
+    virtualenv: "{{ python_venv_path }}"
+    virtualenv_command: /usr/bin/python{{ python_base_version }} -m venv
+    name: "{{ python_venv_packages }}"
+    state: "{{ python_venv_state }}"

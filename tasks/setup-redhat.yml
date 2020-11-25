@@ -1,7 +1,8 @@
-- name: Install python{{ base_python_version }}
+- name: Install python{{ python_base_version }}
   become: true
+  become_user: "{{ root_user }}"
   yum:
-    update_cache: yes
+    update_cache: true
     name:
-    - python{{ base_python_version | replace('.', '') }}
+    - python{{ python_base_version | replace('.', '') }}
     - wget
