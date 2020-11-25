@@ -7,3 +7,6 @@
 
   roles:
   - role: "marvel-nccr.python"
+    vars:
+      base_python_packages:
+      - pyyaml
