@@ -3,8 +3,8 @@
   yum:
     update_cache: yes
     name:
-      - python{{ base_python_version | replace('.', '') }}
-      - wget
+    - python{{ base_python_version | replace('.', '') }}
+    - wget
 
 - name: download get-pip.py
   get_url:

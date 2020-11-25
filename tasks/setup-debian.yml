@@ -17,6 +17,7 @@
     name:
     - python{{ base_python_version }}
     - python{{ base_python_version }}-dev
+    - python{{ base_python_version }}-distutils
     - python{{ base_python_version }}-venv
     - wget
 
