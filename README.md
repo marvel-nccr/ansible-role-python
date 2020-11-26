@@ -62,6 +62,19 @@ pip install tox
 tox
 ```
 
+For testing specific distributions and python versions, .e.g.:
+
+```bash
+MOLECULE_DISTRO=centos8 MOLECULE_PYTHON_VERSION=3.8 tox
+```
+
+To manually inspect a container, you can run the converge and destroy steps individually:
+
+```bash
+tox converge
+tox destroy
+```
+
 ## Code style
 
 Code style is formatted and linted with [pre-commit](https://pre-commit.com/).

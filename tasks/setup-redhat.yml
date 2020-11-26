@@ -7,10 +7,19 @@
     - python{{ python_base_version | replace('.', '') }}
     - wget
 
-- name: Install Tk GUI toolkit for python3
+- name: install tkinter
   when: python_install_tk|bool
-  become: true
-  become_user: "{{ root_user }}"
-  yum:
-    name:
-    - python3-tkinter  # TODO this may not be correct
+  block:
+  - name: Install Tk GUI toolkit for python{{ python_base_version | replace('.', '') }}
+    become: true
+    become_user: "{{ root_user }}"
+    yum:
+      name:
+      - python{{ python_base_version | replace('.', '') }}-tkinter  # TODO this may not be correct
+  rescue:
+  - name: Install Tk GUI toolkit for python3 (fallback)
+    become: true
+    become_user: "{{ root_user }}"
+    yum:
+      name:
+      - python3-tkinter
