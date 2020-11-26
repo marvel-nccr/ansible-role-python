@@ -4,22 +4,39 @@
   yum:
     update_cache: true
     name:
-    - python{{ python_base_version | replace('.', '') }}
+    - python{{ python_base_version | replace('.', '') }}  # note this also installs venv
     - wget
 
-- name: install tkinter
-  when: python_install_tk|bool
+- name: install development headers
+  when: python_install_dev|bool
   block:
-  - name: Install Tk GUI toolkit for python{{ python_base_version | replace('.', '') }}
+  - name: Install python{{ python_base_version }} development headers
     become: true
     become_user: "{{ root_user }}"
     yum:
       name:
-      - python{{ python_base_version | replace('.', '') }}-tkinter  # TODO this may not be correct
+      - python{{ python_base_version | replace('.', '') }}-devel
+  rescue:
+  - name: Install python3 development headers (fallback)
+    become: true
+    become_user: "{{ root_user }}"
+    yum:
+      name:
+      - python3-devel  # TODO fedora yum does not have python3x-devel available by default
+
+- name: install tkinter
+  when: python_install_tk|bool
+  block:
+  - name: Install Tk GUI toolkit for python{{ python_base_version }}
+    become: true
+    become_user: "{{ root_user }}"
+    yum:
+      name:
+      - python{{ python_base_version | replace('.', '') }}-tkinter
   rescue:
   - name: Install Tk GUI toolkit for python3 (fallback)
     become: true
     become_user: "{{ root_user }}"
     yum:
       name:
-      - python3-tkinter
+      - python3-tkinter  # TODO fedora yum does not have python3x-devel available by default

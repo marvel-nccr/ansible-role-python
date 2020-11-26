@@ -27,6 +27,8 @@ See `defaults/main.yml`
   roles:
   - role: marvel-nccr.python
     vars:
+      python_base_version: "3.7"
+      python_install_dev: true
       python_venv_path: "/tmp/my_venv"
       python_venv_packages:
         - pip
@@ -34,6 +36,11 @@ See `defaults/main.yml`
         - wheel
       python_venv_state: latest
 ```
+
+## Known Issues
+
+- Python 3.7 is not available on CentOS 8
+- `python_install_dev` and `python_install_tk` will not work for Fedora 31 if no Python 3.7 (`python3-devel` and `python3-tkinter` will be installed, which only work for the default python 3.7 version)
 
 ## Development and testing
 

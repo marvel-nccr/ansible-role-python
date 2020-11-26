@@ -1,5 +1,7 @@
 root_user: "root"
 python_base_version: "3.7"
+python_install_dev: false  # install libraries and header files needed for Python development
+
 python_venv_path:
 python_venv_state: latest
 python_venv_packages:
