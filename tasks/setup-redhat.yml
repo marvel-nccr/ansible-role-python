@@ -6,3 +6,11 @@
     name:
     - python{{ python_base_version | replace('.', '') }}
     - wget
+
+- name: Install Tk GUI toolkit
+  when: python_install_tk|bool
+  become: true
+  become_user: "{{ root_user }}"
+  apt:
+    name:
+    - python{{ python_base_version | replace('.', '') }}-tkinter
