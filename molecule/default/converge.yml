@@ -1,9 +1,5 @@
 - name: Converge
   hosts: all
 
-  vars:
-  - run_tests: true
-  - ansible_python_interpreter: /usr/bin/python3
-
   roles:
   - role: "marvel-nccr.python"

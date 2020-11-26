@@ -6,3 +6,6 @@ python_venv_packages:
 - pip
 - setuptools
 - wheel
+
+# Install the Tk GUI toolkit (see https://docs.python.org/3/library/tkinter.html)
+python_install_tk: false

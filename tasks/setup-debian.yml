@@ -30,6 +30,15 @@
 - name: Install distutils
   when: ansible_distribution_major_version|int == 18
   become: true
+  become_user: "{{ root_user }}"
   apt:
     name:
     - python{{ python_base_version }}-distutils
+
+- name: Install Tk GUI toolkit for python{{ python_base_version }}
+  when: python_install_tk|bool
+  become: true
+  become_user: "{{ root_user }}"
+  apt:
+    name:
+    - python{{ python_base_version }}-tk
