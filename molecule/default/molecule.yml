@@ -33,6 +33,7 @@ provisioner:
         vars:
           ansible_python_interpreter: /usr/bin/python3
           python_base_version: "${MOLECULE_PYTHON_VERSION:-3.7}"
-          python_venv_path: /tmp/test_venv
+          python_install_dev: true
           python_install_tk: true
+          python_venv_path: /tmp/test_venv
           run_tests: true

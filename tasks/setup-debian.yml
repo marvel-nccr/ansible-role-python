@@ -23,11 +23,19 @@
     # and for the version of Python specified by this option.
     - python3-setuptools
     - python{{ python_base_version }}
-    - python{{ python_base_version }}-dev
     - python{{ python_base_version }}-venv
     - wget
 
-- name: Install distutils
+- name: Install python{{ python_base_version }}-dev
+  when: python_install_dev|bool
+  become: true
+  become_user: "{{ root_user }}"
+  apt:
+    name:
+    - python{{ python_base_version }}-dev
+
+- name: Install python{{ python_base_version }}-distutils
+  # this is only separate for 18.04
   when: ansible_distribution_major_version|int == 18
   become: true
   become_user: "{{ root_user }}"
