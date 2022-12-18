@@ -2,6 +2,7 @@ allow_duplicates: false
 
 galaxy_info:
   role_name: python
+  namespace: marvel_nccr
   author: "MARVEL NCCR"
   # yamllint disable-line rule:line-length
   description: "An Ansible role that installs a  specific base python version and environment"
