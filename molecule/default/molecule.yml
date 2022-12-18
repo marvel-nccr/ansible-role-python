@@ -5,7 +5,7 @@ driver:
   name: docker
 platforms:
 - name: instance
-  image: "marvelnccr/docker-${MOLECULE_DISTRO:-ubuntu1804}-ansible:latest"
+  image: "geerlingguy/docker-${MOLECULE_DISTRO:-ubuntu1804}-ansible:latest"
   command: "${MOLECULE_DOCKER_COMMAND:-sleep infinity}"
   volumes:
   # required if using systemd to manage services
