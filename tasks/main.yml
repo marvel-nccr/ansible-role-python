@@ -4,13 +4,13 @@
 - include_tasks: setup-redhat.yml
   when: ansible_os_family|lower == 'redhat'
 
+# As of 12/2022, get-pip only supports python>=3.7
 - name: download get-pip.py
   get_url:
     url: https://bootstrap.pypa.io/get-pip.py
     dest: /tmp/get-pip.py
   when: python_base_version != '3.6'
 
-# get-pip no longer works for python3.6
 - name: download get-pip.py
   get_url:
     url: https://bootstrap.pypa.io/pip/3.6/get-pip.py
