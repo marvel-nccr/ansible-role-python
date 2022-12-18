@@ -22,6 +22,7 @@
     # The setuptools package must be installed for both the Ansible Python interpreter
     # and for the version of Python specified by this option.
     - python3-setuptools
+    - python3-distutils
     - python{{ python_base_version }}
     - python{{ python_base_version }}-venv
     - wget
