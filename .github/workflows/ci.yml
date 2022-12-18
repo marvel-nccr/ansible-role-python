@@ -27,7 +27,7 @@ jobs:
 
     strategy:
       matrix:
-        distro: [ubuntu1604, ubuntu1804, ubuntu2004, centos8, fedora31]
+        distro: [ubuntu1804, ubuntu2004, ubuntu2204, centos8, fedora31]
         python: ['3.6', '3.7', '3.8', '3.9']
         exclude:
         # TODO python37 not available for install on yum
