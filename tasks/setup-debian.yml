@@ -41,4 +41,3 @@
   apt:
     name:
     - python{{ python_base_version }}-tk
-
