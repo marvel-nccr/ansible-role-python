@@ -34,7 +34,7 @@ jobs:
         - distro: centos8
           python: '3.7'
         # python36 no longer available on ubuntu 22.04
-        - distro: ubuntu2004
+        - distro: ubuntu2204
           python: '3.6'
       fail-fast: false
 
